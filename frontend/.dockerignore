@@ -1,0 +1,6 @@
+node_modules/
+dist/
+nginx/certs/
+.env*
+.git/
+*.md
