@@ -23,9 +23,6 @@ RUN jlink \
 FROM alpine:3.20
 WORKDIR /app
 
-# only curl, for the healthcheck
-RUN apk add --no-cache curl
-
 RUN addgroup -S app && adduser -S app -G app
 
 COPY --from=build /jre /opt/java
@@ -49,9 +46,6 @@ ENV JAVA_TOOL_OPTIONS="\
 -XX:+ExitOnOutOfMemoryError \
 -Djava.awt.headless=true \
 -Dfile.encoding=UTF-8"
-
-HEALTHCHECK --interval=30s --timeout=5s --start-period=30s --retries=3 \
-  CMD curl -f http://localhost:8080/actuator/health || exit 1
 
 EXPOSE 8080
 USER app

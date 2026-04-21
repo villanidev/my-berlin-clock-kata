@@ -44,7 +44,7 @@ public class BerlinClockController {
     @Operation(summary = "Convert digital time to Berlin Clock",
             description = "Converts HH:mm:ss to a structured Berlin Clock response with individual rows")
     public BerlinClockResponse toBerlin(@Valid @ModelAttribute ToBerlinRequest request) {
-        log.debug("GET /to-berlin time={}", request.time());
+        log.info("GET /to-berlin time={}", request.time());
         BerlinClockTime clock = berlinClockService.toBerlinClock(LocalTime.parse(request.time()));
         return BerlinClockResponse.from(request.time(), clock);
     }
@@ -54,7 +54,7 @@ public class BerlinClockController {
             description = "Parses a 24-char Berlin Clock string back to HH:mm:ss. " +
                     "Note: seconds are recovered as parity only (even → 00, odd → 01).")
     public DigitalTimeResponse toDigital(@Valid @ModelAttribute ToDigitalRequest request) {
-        log.debug("GET /to-digital clock={}", request.clock());
+        log.info("GET /to-digital clock={}", request.clock());
         return new DigitalTimeResponse(berlinClockService.toDigitalTime(request.clock()));
     }
 
@@ -62,7 +62,7 @@ public class BerlinClockController {
     @Operation(summary = "Live Berlin Clock (SSE)",
             description = "Streams the current Berlin Clock state every second via Server-Sent Events")
     public SseEmitter live() {
-        log.debug("GET /live - new SSE subscription requested");
+        log.info("GET /live - new SSE subscription requested");
         return (SseEmitter) liveClockService.subscribe();
     }
 }
