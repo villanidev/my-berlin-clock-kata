@@ -35,8 +35,7 @@ ENV JAVA_TOOL_OPTIONS="\
 -XX:ActiveProcessorCount=1 \
 -XX:MaxRAMPercentage=70.0 \
 -XX:InitialRAMPercentage=70.0 \
--Xss256k \
--XX:MaxMetaspaceSize=96m \
+-XX:MaxMetaspaceSize=128m \
 -XX:ReservedCodeCacheSize=32m \
 -XX:MaxDirectMemorySize=32m \
 -XX:+UseG1GC \
