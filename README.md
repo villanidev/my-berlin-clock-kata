@@ -1,5 +1,9 @@
 # Berlin Clock Kata
 
+**Live demo:** [https://my-berlin-clock.up.railway.app/](https://my-berlin-clock.up.railway.app/)
+
+> The backend is not publicly exposed — it runs as an internal service and is only accessible by the frontend within the private network.
+
 The Berlin Clock (Mengenlehre-Uhr) is a clock that displays time using sets of lit lamps. It was created by Dieter Binninger and installed in Berlin in 1975.
 
 ## How it works
