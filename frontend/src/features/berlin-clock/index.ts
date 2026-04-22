@@ -1,5 +1,5 @@
 export { default as BerlinClockDisplay } from "./components/BerlinClockDisplay";
-export { default as LiveClockView } from "./components/LiveClockView";
+export { default as LiveClockPage } from "./pages/LiveClockPage";
 export { useLiveClock } from "./hooks/useLiveClock";
 export type {
   BerlinClockResponse,

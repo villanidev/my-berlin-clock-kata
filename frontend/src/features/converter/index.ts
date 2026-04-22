@@ -1,2 +1,2 @@
-export { default as ConverterView } from "./components/ConverterView";
+export { default as ConverterPage } from "./pages/ConverterPage";
 export { useConverter } from "./hooks/useConverter";

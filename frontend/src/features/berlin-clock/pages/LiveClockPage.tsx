@@ -1,8 +1,8 @@
 import { useLiveClock } from "../hooks/useLiveClock";
-import BerlinClockDisplay from "./BerlinClockDisplay";
+import BerlinClockDisplay from "../components/BerlinClockDisplay";
 import CopyableString from "../../../shared/components/CopyButton";
 
-export default function LiveClockView() {
+export default function LiveClockPage() {
   const { event, connected } = useLiveClock();
 
   return (

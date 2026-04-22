@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
-import { ConverterView } from "./features/converter";
-import { LiveClockView } from "./features/berlin-clock";
+import { ConverterPage } from "./features/converter";
+import { LiveClockPage } from "./features/berlin-clock";
 
 export default function App() {
   return (
@@ -13,8 +13,8 @@ export default function App() {
           <NavLink to="/live">Live Clock</NavLink>
         </nav>
         <Routes>
-          <Route path="/" element={<ConverterView />} />
-          <Route path="/live" element={<LiveClockView />} />
+          <Route path="/" element={<ConverterPage />} />
+          <Route path="/live" element={<LiveClockPage />} />
         </Routes>
       </div>
     </BrowserRouter>
