@@ -1,5 +1,6 @@
 import { useConverter } from "../hooks/useConverter";
 import BerlinClockDisplay from "../../berlin-clock/components/BerlinClockDisplay";
+import CopyableString from "../../../shared/components/CopyButton";
 
 export default function ConverterView() {
   const vm = useConverter();
@@ -29,8 +30,14 @@ export default function ConverterView() {
 
           {vm.clockResult && (
             <>
-              <BerlinClockDisplay clock={vm.clockResult.berlinTime} />
-              <div className="result-string">{vm.clockResult.berlinTime}</div>
+              <BerlinClockDisplay
+                seconds={vm.clockResult.seconds}
+                fiveHours={vm.clockResult.fiveHours}
+                singleHours={vm.clockResult.singleHours}
+                fiveMinutes={vm.clockResult.fiveMinutes}
+                singleMinutes={vm.clockResult.singleMinutes}
+              />
+              <CopyableString text={vm.clockResult.berlinTime} />
             </>
           )}
         </div>

@@ -1,5 +1,6 @@
 import { useLiveClock } from "../hooks/useLiveClock";
 import BerlinClockDisplay from "./BerlinClockDisplay";
+import CopyableString from "../../../shared/components/CopyButton";
 
 export default function LiveClockView() {
   const { event, connected } = useLiveClock();
@@ -16,9 +17,15 @@ export default function LiveClockView() {
 
       {event && (
         <>
-          <BerlinClockDisplay clock={event.clock} />
+          <BerlinClockDisplay
+            seconds={event.seconds}
+            fiveHours={event.fiveHours}
+            singleHours={event.singleHours}
+            fiveMinutes={event.fiveMinutes}
+            singleMinutes={event.singleMinutes}
+          />
           <div className="live-time">{event.time}</div>
-          <div className="result-string">{event.clock}</div>
+          <CopyableString text={event.clock} />
         </>
       )}
 
