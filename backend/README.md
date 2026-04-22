@@ -43,7 +43,7 @@ villanidev.berlinclock/
 
 `GlobalExceptionHandler` maps validation errors and illegal arguments to structured 400 responses.
 
-Swagger UI is available at `/swagger-ui.html`.
+Swagger UI is available at `/swagger-ui.html` (disabled in prod).
 
 ### Infrastructure
 

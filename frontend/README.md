@@ -16,16 +16,19 @@ MVVM, organized by feature (package-by-feature):
 src/
 ├── features/
 │   ├── berlin-clock/
-│   │   ├── components/    UI components for the clock display
+│   │   ├── components/    BerlinClockDisplay and its sub-components
 │   │   ├── hooks/         useLiveClock — ViewModel for the live page
+│   │   ├── pages/         LiveClockPage — route-level entry point
 │   │   ├── services/      berlinClockService — API calls
 │   │   ├── types/         TypeScript interfaces for API responses
 │   │   └── index.ts       Barrel export
 │   └── converter/
-│       ├── components/    ConverterView
+│       ├── components/    ToBerlinForm, ToDigitalForm
 │       ├── hooks/         useConverter — ViewModel for the converter page
+│       ├── pages/         ConverterPage — route-level entry point
 │       └── index.ts
 ├── shared/
+│   ├── components/        CopyableString — clipboard button component
 │   ├── hooks/             useSSE — generic EventSource hook
 │   └── config/            api.ts — base URL from VITE_API_URL
 ├── App.tsx
@@ -35,18 +38,16 @@ src/
 
 ### MVVM mapping
 
-| Layer     | Location                                                       |
-| --------- | -------------------------------------------------------------- |
-| Model     | `features/berlin-clock/types/BerlinClockTypes.ts`              |
-| ViewModel | `hooks/useLiveClock.ts`, `hooks/useConverter.ts`               |
-| View      | `components/LiveClockView.tsx`, `components/ConverterView.tsx` |
-| Service   | `services/berlinClockService.ts`                               |
+| Layer     | Location                                             |
+| --------- | ---------------------------------------------------- |
+| Model     | `features/berlin-clock/types/BerlinClockTypes.ts`    |
+| ViewModel | `hooks/useLiveClock.ts`, `hooks/useConverter.ts`     |
+| View      | `pages/LiveClockPage.tsx`, `pages/ConverterPage.tsx` |
+| Service   | `services/berlinClockService.ts`                     |
 
-Views only render — they hold no state and make no API calls. Hooks own state and call services. Services own fetch logic.
+Pages are thin — they delegate state and API calls to hooks, and rendering to form components. `ConverterPage` composes `ToBerlinForm` and `ToDigitalForm`, each receiving props from `useConverter`.
 
 ### Component hierarchy
-
-The clock display is broken into a small tree of focused components:
 
 ```
 BerlinClockDisplay
@@ -58,6 +59,8 @@ BerlinClockDisplay
 ```
 
 `Lamp` is the primitive — a single styled div with a `state` prop (`Y`, `R`, or `O`). `ClockRow` adds a label and maps lamps. `HoursRow` and `MinutesRow` apply domain-specific rules (size, title format) and delegate to `ClockRow`.
+
+`CopyableString` renders a monospace bar with an inline clipboard button; transitions to a checkmark for 1.5 s after a successful copy.
 
 ### SSE
 
