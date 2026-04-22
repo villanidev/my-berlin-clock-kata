@@ -20,8 +20,8 @@ export default function ConverterView() {
               step="1"
               value={vm.digitalTime}
               onChange={(e) => vm.setDigitalTime(e.target.value)}
-              required
             />
+            {vm.berlinError && <p className="error">{vm.berlinError}</p>}
             <button type="submit" style={{ width: "100%" }}>
               Convert
             </button>
@@ -47,8 +47,8 @@ export default function ConverterView() {
               value={vm.berlinInput}
               onChange={(e) => vm.setBerlinInput(e.target.value.toUpperCase())}
               maxLength={24}
-              required
             />
+            {vm.digitalError && <p className="error">{vm.digitalError}</p>}
             <button type="submit" style={{ width: "100%" }}>
               Convert
             </button>
@@ -58,20 +58,13 @@ export default function ConverterView() {
             <>
               <div className="digital-time">{vm.timeResult}</div>
               <p className="hint">
-                ⚠ Seconds show parity only (0 = even, 1 = odd) — the Berlin
-                Clock encodes whether seconds are even or odd, not the exact
-                value.
+                Seconds show parity only (0 = even, 1 = odd) — the Berlin Clock
+                encodes whether seconds are even or odd, not the exact value.
               </p>
             </>
           )}
         </div>
       </div>
-
-      {vm.error && (
-        <p className="error" style={{ marginTop: "1rem" }}>
-          {vm.error}
-        </p>
-      )}
     </div>
   );
 }

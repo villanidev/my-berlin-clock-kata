@@ -5,7 +5,7 @@ services:
     ports:
       - "8080:8080"
     environment:
-      SPRING_PROFILES_ACTIVE: "prod"
+      SPRING_PROFILES_ACTIVE: "local"
       CORS_ALLOWED_ORIGINS: "https://localhost"
       CLOCK_TIMEZONE: "Europe/Brussels"
       PORT: 8080
